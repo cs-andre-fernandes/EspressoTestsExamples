@@ -1,10 +1,9 @@
-package com.example.heitorcolangelo.espressotests
+package com.example.heitorcolangelo.espressotests.main
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.rule.ActivityTestRule
 import br.com.concretesolutions.requestmatcher.InstrumentedTestRequestMatcherRule
 import com.example.heitorcolangelo.espressotests.common.ApplicationTest
-import com.example.heitorcolangelo.espressotests.main.load
 import com.example.heitorcolangelo.espressotests.ui.activity.MainActivity
 import org.junit.Before
 import org.junit.runner.RunWith
@@ -20,10 +19,10 @@ import org.junit.Rule
 class MainActivityTest {
 
     @get:Rule
-    private val server = InstrumentedTestRequestMatcherRule()
+    val server = InstrumentedTestRequestMatcherRule()
 
     @get:Rule
-    private val activityTest = ActivityTestRule<MainActivity>(MainActivity::class.java, false, false)
+    val activityTest = ActivityTestRule<MainActivity>(MainActivity::class.java, false, false)
 
     @Before
     fun setup()  {
