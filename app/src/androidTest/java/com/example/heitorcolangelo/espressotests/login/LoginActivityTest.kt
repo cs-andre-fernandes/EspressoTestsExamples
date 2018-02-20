@@ -34,54 +34,38 @@ class LoginActivityTest {
     //region Publics
     @Test
     fun whenActivityIsLaunchedShouldDisplayInitialState() {
-        onView(withId(R.id.login_image)).check(matches(isDisplayed()))
-        onView(withId(R.id.login_username)).check(matches(isDisplayed()))
-        onView(withId(R.id.login_password)).check(matches(isDisplayed()))
-        onView(withId(R.id.login_button)).check(matches(isDisplayed()))
+        login { send { initialStateSuccess() } }
     }
 
     @Test
     fun whenOnlyHasUserNameShouldDisplayErrorMessage() {
-        testEmptyStateField(R.id.login_username)
+        login {
+            username("username")
+        } send {
+            isEmptyStateFailure()
+        }
     }
 
     @Test
     fun whenOnlyHasPasswordShouldDisplayErrorMessage() {
-        testEmptyStateField(R.id.login_password)
+        login {
+            password("password")
+        } send {
+            isEmptyStateFailure()
+        }
     }
 
     @Test
     fun whenBothFieldsAreFilledAndClickAtButtonShouldOpenMainActivity() {
-        Intents.init()
-
-        onView(withId(R.id.login_username)).perform(typeText("default"))
-        closeSoftKeyboard()
-        onView(withId(R.id.login_password)).perform(typeText("default"))
-        closeSoftKeyboard()
-
-        val matcher = hasComponent(MainActivity::class.qualifiedName)
-
-        val activityResult = Instrumentation.ActivityResult(Activity.RESULT_OK, null)
-        intending(matcher).respondWith(activityResult)
-
-        onView(withId(R.id.login_button)).perform(click())
-
-        intended(matcher)
-        Intents.release()
+        login {
+            username("whatever")
+            password("whatever")
+        } send {
+            isSuccess()
+        }
     }
 
     //endregion
 
-
-    //region Privates
-    private fun testEmptyStateField(field: Int) {
-        onView(withId(field)).perform(typeText("someText"))
-        closeSoftKeyboard()
-        onView(withId(R.id.login_button)).perform(click())
-        onView(withText(R.string.important)).check(matches(isDisplayed()))
-        onView(withText(R.string.ok)).perform(click())
-    }
-
-    //endregion
 
 }
