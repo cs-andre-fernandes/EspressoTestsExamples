@@ -1,4 +1,4 @@
-package com.example.heitorcolangelo.espressotests
+package com.example.heitorcolangelo.espressotests.user_detail
 
 import android.app.Activity
 import android.app.Instrumentation
@@ -16,6 +16,8 @@ import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v4.content.ContextCompat
+import com.example.heitorcolangelo.espressotests.common.PermissionUtils
+import com.example.heitorcolangelo.espressotests.R
 import com.example.heitorcolangelo.espressotests.matcher.withTextColor
 import com.example.heitorcolangelo.espressotests.network.model.UserVO
 import com.example.heitorcolangelo.espressotests.ui.activity.UserDetailsActivity

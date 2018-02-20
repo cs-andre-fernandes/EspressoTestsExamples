@@ -1,8 +1,7 @@
-package com.example.heitorcolangelo.espressotests
+package com.example.heitorcolangelo.espressotests.login
 
 import android.app.Activity
 import android.app.Instrumentation
-import android.content.Intent
 import android.support.test.espresso.Espresso.closeSoftKeyboard
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
@@ -14,9 +13,9 @@ import android.support.test.espresso.intent.Intents.intending
 import android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
+import com.example.heitorcolangelo.espressotests.R
 import com.example.heitorcolangelo.espressotests.ui.activity.LoginActivity
 import com.example.heitorcolangelo.espressotests.ui.activity.MainActivity
-import org.hamcrest.Matcher
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

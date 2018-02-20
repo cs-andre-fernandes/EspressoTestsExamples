@@ -1,4 +1,4 @@
-package com.example.heitorcolangelo.espressotests
+package com.example.heitorcolangelo.espressotests.common
 
 import android.content.Context
 import android.content.pm.PackageManager

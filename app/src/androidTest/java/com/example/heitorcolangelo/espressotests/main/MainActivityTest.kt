@@ -1,4 +1,4 @@
-package com.example.heitorcolangelo.espressotests
+package com.example.heitorcolangelo.espressotests.main
 
 import android.app.Activity
 import android.app.Instrumentation
@@ -17,6 +17,8 @@ import android.support.test.rule.ActivityTestRule
 import android.support.v7.widget.RecyclerView
 import br.com.concretesolutions.requestmatcher.InstrumentedTestRequestMatcherRule
 import br.com.concretesolutions.requestmatcher.model.HttpMethod
+import com.example.heitorcolangelo.espressotests.common.ApplicationTest
+import com.example.heitorcolangelo.espressotests.R
 import com.example.heitorcolangelo.espressotests.ui.activity.MainActivity
 import com.example.heitorcolangelo.espressotests.ui.activity.UserDetailsActivity
 import org.hamcrest.CoreMatchers.allOf
