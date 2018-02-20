@@ -1,18 +1,18 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
+apply plugin: 'kotlin-android'
 
 android {
-  compileSdkVersion 24
-  buildToolsVersion "24.0.0"
+  compileSdkVersion 25
+  buildToolsVersion '26.0.2'
 
   defaultConfig {
     applicationId "com.example.heitorcolangelo.espressotests"
     minSdkVersion 16
-    targetSdkVersion 24
+    targetSdkVersion 25
     versionCode 1
     versionName "1.0"
 
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner "com.example.heitorcolangelo.espressotests.TestingRunner"
     vectorDrawables.useSupportLibrary = true
 
     resConfigs "en"
@@ -32,8 +32,11 @@ android {
 final butterKnifeVersion = '8.1.0'
 final picassoVersion = '2.5.2'
 final okHttpVersion = '3.3.1'
-final androidSupportVersion = '24.1.1'
+final androidSupportVersion = '25.4.0'
 final retrofitVersion = '2.0.2'
+final espressoVersion = "3.0.1"
+final runnerVersion = "1.0.1"
+final requestMatcherVersion = "2.2.0"
 
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -45,7 +48,7 @@ dependencies {
   compile "com.squareup.picasso:picasso:$picassoVersion"
 
   // ButterKnife
-  apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
+  annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
   compile "com.jakewharton:butterknife:$butterKnifeVersion"
 
   // EventBus
@@ -60,4 +63,26 @@ dependencies {
   compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
   testCompile 'junit:junit:4.12'
+
+  //Espresso
+  androidTestCompile "com.android.support.test:runner:$runnerVersion"
+  androidTestCompile "com.android.support.test.espresso:espresso-core:$espressoVersion"
+  androidTestCompile "com.android.support.test.espresso:espresso-intents:$espressoVersion"
+  androidTestCompile "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
+
+  //RequestMatcher
+  androidTestCompile "br.com.concretesolutions:requestmatcher:$requestMatcherVersion"
+
+  //MockWebServer
+  androidTestCompile 'com.squareup.okhttp3:mockwebserver:3.2.0'
+
+  //Kotlin
+  compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  compile "org.jetbrains.kotlin:kotlin-reflect:1.2.21"
+
+  //UiAutomator
+  androidTestCompile "com.android.support.test.uiautomator:uiautomator-v18:2.1.3"
+}
+repositories {
+  mavenCentral()
 }

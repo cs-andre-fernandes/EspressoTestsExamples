@@ -1,5 +1,6 @@
 package com.example.heitorcolangelo.espressotests.network;
 
+import com.example.heitorcolangelo.espressotests.App;
 import com.example.heitorcolangelo.espressotests.BuildConfig;
 import com.example.heitorcolangelo.espressotests.network.model.ErrorVO;
 import com.example.heitorcolangelo.espressotests.network.model.Page;
@@ -22,19 +23,31 @@ public final class UsersApi {
   private static final int RESULTS = 20;
 
   private Api api;
-
   private static UsersApi INSTANCE;
+
+  public UsersApi(String url) {
+    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+    interceptor.setLevel(BuildConfig.DEBUG ?
+            HttpLoggingInterceptor.Level.BODY :
+            HttpLoggingInterceptor.Level.NONE);
+    OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+    api = new Retrofit.Builder()
+            .baseUrl(url)
+            .addConverterFactory(GsonConverterFactory.create(GSON))
+            .client(client)
+            .build()
+            .create(Api.class);
+  }
 
   /**
    * Sets up the singleton instance
    *
    * @return Singleton instance
    */
-  public static UsersApi getInstance() {
-    if (INSTANCE == null) {
-      INSTANCE = new UsersApi();
-    }
-    return INSTANCE;
+  public static UsersApi getInstance(String url) {
+      INSTANCE = new UsersApi(url);
+      return INSTANCE;
   }
 
   /**
@@ -58,20 +71,5 @@ public final class UsersApi {
         EventBus.getDefault().post(new ErrorVO());
       }
     });
-  }
-
-  private UsersApi() {
-    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-    interceptor.setLevel(BuildConfig.DEBUG ?
-        HttpLoggingInterceptor.Level.BODY :
-        HttpLoggingInterceptor.Level.NONE);
-    OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-
-    api = new Retrofit.Builder()
-        .baseUrl(BuildConfig.BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create(GSON))
-        .client(client)
-        .build()
-        .create(Api.class);
   }
 }

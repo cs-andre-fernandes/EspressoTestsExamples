@@ -1,15 +1,19 @@
 package com.example.heitorcolangelo.espressotests.ui.activity;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import com.example.heitorcolangelo.espressotests.App;
 import com.example.heitorcolangelo.espressotests.R;
 import com.example.heitorcolangelo.espressotests.adapter.SimpleRecyclerAdapter;
 import com.example.heitorcolangelo.espressotests.adapter.UserListAdapter;
@@ -48,7 +52,7 @@ public class MainActivity extends BaseActivity {
     super.onResume();
     if (adapter == null) {
       showLoading();
-      UsersApi.getInstance().getUsers(currentPage);
+      UsersApi.getInstance(((App)getApplicationContext()).getUrl()).getUsers(currentPage);
     } else
       setupRecyclerView();
   }
