@@ -1,7 +1,6 @@
-package com.example.heitorcolangelo.espressotests
+package com.example.heitorcolangelo.espressotests.common
 
-import android.app.Application
-import android.test.ApplicationTestCase
+import com.example.heitorcolangelo.espressotests.App
 
 /**
  * [Testing Fundamentals](http://d.android.com/tools/testing/testing_android.html)
